@@ -37,11 +37,11 @@ function route(pathname, response, query){
 		if (thisController[pathname]){
 			thisController[pathname].call(thisController);
 		}else{
-			response.end("Error! Action '" + pathname + " not found");
+			response.end("Error! Action '" + pathname + "'' not found");
 		}
 	}catch(e){
 
-		response.end("Error! Controller '"+ controllerName +" not found!");
+		response.end("Error! Controller '"+ controllerName +"'' not found!");
 	}
 }
 
