@@ -1,7 +1,9 @@
 module.exports = (function () {
 	var util = require("util");
-	var controllerBase = require("../main/controllerBase");
+	var req = require('./projRequire');
+	var controllerBase = req("/main/controllerBase");
 	var extend = require("extend");
+
 	function homeController(response, path, query){
 		this.response = response;
 		this.path = path;
