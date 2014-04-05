@@ -29,16 +29,16 @@ function route(pathname, response, query){
 
 	//przekieruj te dane do kontrolera
 	try{
-		var controller = require("./controllers/" + controllerName);
+		var controller = require("../controllers/" + controllerName);
 
 		var thisController = new controller(response, pathname, query);
 		if (thisController[pathname]){
 			thisController[pathname].call(thisController);
 		}else{
-			response.end("Error! Action '" + pathname + "'' not found");
+			response.end("Error! Action '" + pathname + " not found");
 		}
 	}catch(e){
-		response.end("Error! Controller '"+ controllerName +"'' not found!");
+		response.end("Error! Controller '"+ controllerName +" not found!");
 	}
 }
 
