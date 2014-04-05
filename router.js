@@ -1,6 +1,6 @@
 var fs = require("fs");
 var util = require("util");
-var req = require('./projectDir');
+
 function route(pathname, response, query){
 	console.log("About to route a request for " + pathname);
 
@@ -31,7 +31,7 @@ function route(pathname, response, query){
 	//przekieruj te dane do kontrolera
 	try{
 		console.log(__dirname);
-		var controller = req("/controllers/home");
+		var controller = require("./controllers/" + controllerName);
 
 		var thisController = new controller(response, pathname, query);
 		if (thisController[pathname]){
