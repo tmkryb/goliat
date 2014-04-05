@@ -31,7 +31,7 @@ function route(pathname, response, query){
 	//przekieruj te dane do kontrolera
 	try{
 		console.log(__dirname);
-		var controller = req("/controllers/" + controllerName);
+		var controller = req("/controllers/home");
 
 		var thisController = new controller(response, pathname, query);
 		if (thisController[pathname]){
