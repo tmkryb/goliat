@@ -10,12 +10,12 @@ module.exports = (function () {
 		renderView:	function(file, model){ 
 			if (model){
 				util.log("There is a model passed");
-				util.log(model);
+				
 			}
 
 			var response = this.response;
 			response.writeHead(200, {"Content-Type": "text/html"});
-			util.log(util.inspect(this.response));
+			
 			fs.readFile("./views/"+ this.folder + "/" + file + '.html', function(error, html){
 				//console.log(JSON.stringify(this));
 				if(html){					

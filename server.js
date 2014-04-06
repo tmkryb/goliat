@@ -12,12 +12,12 @@ function start(route){
 			
 			console.log("Request for page: " + pathName);
 			
-			var html = route(pathName, response, query);			
+			route(pathName, response, request, query);			
 			
 		
 	}
 
-	http.createServer(onRequest).listen(80,function(err) {
+	http.createServer(onRequest).listen(8888,function(err) {
     if (err) return cb(err);
 
     // Find out which user used sudo through the environment variable
