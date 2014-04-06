@@ -20,7 +20,7 @@ function route(pathname, response, request, query){
 	localFolder = __dirname,
 	page404 = localFolder + '/404.htm';
 	console.log(ext);
-	if (ext != ".html")
+	if (ext != "" && ext != ".html")
 	{
 		var filePath = localFolder + request.url;
 		path.exists(filePath,function(exists){

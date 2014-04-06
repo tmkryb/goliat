@@ -14,6 +14,9 @@ module.exports = (function () {
 		folder: "home",
 		index: function(){
 			this.renderView("index", {"name": "Tomasz"});
+		},
+		witaj: function(){
+			this.renderView("witaj");
 		}
 	})
  

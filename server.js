@@ -17,7 +17,7 @@ function start(route){
 		
 	}
 
-	http.createServer(onRequest).listen(8888,function(err) {
+	http.createServer(onRequest).listen(80,function(err) {
     if (err) return cb(err);
 
     // Find out which user used sudo through the environment variable
