@@ -14,7 +14,7 @@ module.exports = (function () {
 			}
 
 			var response = this.response;
-			response.writeHead(200, {"Content-Type": "text/html"});
+			response.writeHead(200, {"Content-Type": "text/html", "Server": "Goliat 0.1"});
 			
 			fs.readFile("./views/"+ this.folder + "/" + file + '.html', function(error, html){
 				//console.log(JSON.stringify(this));
