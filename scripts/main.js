@@ -1,0 +1,1 @@
+alert("dziala! Jak widać nasz serwer prawidłowo zwraca pliki js!");
