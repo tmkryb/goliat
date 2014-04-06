@@ -1,0 +1,27 @@
+.mainImageDiv span{
+	
+}
+
+body{
+	font-family: "Arial, Helvetica, sans-serif";
+}
+
+.mainImageDiv{
+	
+}
+
+.button {
+	margin: 5px;
+    display: inline-block;    
+    background: #34696f;
+    border: 2px solid rgba(33, 68, 72, 0.59);
+    cursor: pointer;
+}
+
+.button span{
+	padding: 10px;
+}
+
+.button:hover {
+    background-color: rgb(123, 120,120);
+}
