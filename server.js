@@ -8,10 +8,7 @@ function start(route){
 		
 			var pathName = url.parse(request.url).pathname;
 			var query = url.parse(request.url, true).query;
-			
-			
-			console.log("Request for page: " + pathName);
-			
+						
 			route(pathName, response, request, query);			
 			
 		

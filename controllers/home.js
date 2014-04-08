@@ -12,8 +12,13 @@ module.exports = (function () {
 	util.inherits(homeController, controllerBase);
 	extend(homeController.prototype, {
 		folder: "home",
-		index: function(){
+		index: function(queryMap){
+			console.log(queryMap);
 			this.renderView("index", {"name": "Tomasz"});
+		},
+		loop: function(queryMap){
+			console.log("Jestem tutaj");
+			this.returnJson(queryMap);
 		},
 		witaj: function(){
 			this.renderView("witaj");

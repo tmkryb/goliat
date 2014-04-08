@@ -26,6 +26,10 @@ module.exports = (function () {
 					response.end("There was an error\n");
 				}
 			});
+		},
+		returnJson: function(toReturn){			
+			this.response.writeHead(200, {"Content-Type": "application/json", "Server": "Goliat 0.1"});			
+			this.response.end(JSON.stringify(toReturn));
 		}
 	});
 	return controllerBase;

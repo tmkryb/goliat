@@ -1,32 +1,86 @@
 var fs = require("fs");
 var util = require("util");
 var path = require("path");
+var queryString = require("querystring");
 function route(pathname, response, request, query){
-	console.log("About to route a request for " + pathname);
+	//obszar consolelogów i takich tam
+	//przekieruj te dane do kontrolera
+	var parseToController = function(){
+		var controllerName = pathname.replace("/","");
 
-	var extensions = {  
+		var route = pathname.match(/[^/]+/g);
 
-		".html" : "text/html",
-		".css" : "text/css",
-		".js" : "application/javascript",
-		".png" : "image/png",
-		".gif" : "image/gif",
-		".jpg" : "image/jpeg"
-	};
+		if (route){
+			if (route.length === 1){
+				pathname = 'index';
+				controllerName = route[0];
+			}
 
-	var
-	fileName = path.basename(request.url) || 'index.html',
-	ext = path.extname(fileName),
-	localFolder = __dirname,
-	page404 = localFolder + '/404.htm';
-	console.log(ext);
-	if (ext != "" && ext != ".html")
-	{
-		var filePath = localFolder + request.url;
-		path.exists(filePath,function(exists){
+			if (route.length === 2){
+				pathname = route[1];
+				controllerName = route[0];
+			}
+
+		}
+		if (pathname === "/"){
+			pathname = "index";
+			controllerName = "home";
+		}
+		try{
+
+			var controller = require("./controllers/" + controllerName);
+
+			var thisController = new controller(response, pathname, query);
+			if (thisController[pathname]){
+				thisController[pathname](query);
+			}else{
+				response.end("Error! Action '" + pathname + "'' not found");
+			}
+		}catch(e){
+
+			response.end("Error! Controller '"+ controllerName +"'' not found!");
+		}
+	}
+
+	console.log(request.method);
+	console.log(request.headers);
+
+	if(request.method === "POST") {
+		var data = "";
+		request.on("data", function(chunk) {
+			data += chunk;
+		});
+
+		request.on("end", function() {
+
+			var json = queryString.parse(data);
+			query = json;
+			parseToController();
+		});
+	}else{
+
+		var extensions = {  
+
+			".html" : "text/html",
+			".css" : "text/css",
+			".js" : "application/javascript",
+			".png" : "image/png",
+			".gif" : "image/gif",
+			".jpg" : "image/jpeg"
+		};
+
+		var
+		fileName = path.basename(request.url) || 'index.html',
+		ext = path.extname(fileName),
+		localFolder = __dirname,
+		page404 = localFolder + '/404.htm';
+
+		if (ext != "" && ext != ".html")
+		{
+			var filePath = localFolder + request.url;
+			path.exists(filePath,function(exists){
         //if it does...
-        console.log(exists);
-        console.log(filePath);
+        
         if(exists){
             //read the fiule, run the anonymous function
             fs.readFile(filePath,function(err,contents){
@@ -38,10 +92,10 @@ function route(pathname, response, request, query){
                     	"Content-Length" : contents.length
                     });
                     response.end(contents);
-                    console.log("returned a file");
+
                 } else {
                     //for our own troubleshooting
-                    console.dir(err);
+
                 };
             });
         } else {
@@ -55,57 +109,22 @@ function route(pathname, response, request, query){
                     response.end(contents);
                 } else {
                     //for our own troubleshooting
-                    console.dir(err);
+
                 };
             });
 
         }
     })
-	return;
-}
-
-
-var controllerName = pathname.replace("/","");
-
-var route = pathname.match(/[^/]+/g);
-
-console.log(request.headers);
-
-if (route){
-	if (route.length === 1){
-		pathname = 'index';
-		controllerName = route[0];
-	}
-
-	if (route.length === 2){
-		pathname = route[1];
-		controllerName = route[0];
-	}
-
-}
-if (pathname === "/"){
-	pathname = "index";
-	controllerName = "home";
+return;
 }
 
 
 
+parseToController();
 
-	//przekieruj te dane do kontrolera
-	try{
-		
-		var controller = require("./controllers/" + controllerName);
 
-		var thisController = new controller(response, pathname, query);
-		if (thisController[pathname]){
-			thisController[pathname].call(thisController);
-		}else{
-			response.end("Error! Action '" + pathname + "'' not found");
-		}
-	}catch(e){
+}
 
-		response.end("Error! Controller '"+ controllerName +"'' not found!");
-	}
 }
 
 exports.route = route;
