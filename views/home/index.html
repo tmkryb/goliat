@@ -1,45 +1,54 @@
     <!doctype html>
     <html>
     <head>
-    <title></title>
-    <meta charset="utf-8" />
-    
-    <link rel="shortcut icon" href="/favicon.ico" />
-     
-    <meta name="author" content="" />
-    <meta name="date" content="" />
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
+        <title></title>
+        <meta charset="utf-8" />
+
+        <link rel="shortcut icon" href="/favicon.ico" />
+
+        <meta name="author" content="" />
+        <meta name="date" content="" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
     </head>
     <body>
-    <link rel="stylesheet" type="text/css" href="/style/main.css">
-    <script src="http://requirejs.org/docs/release/2.1.11/minified/require.js" data-main="/scripts/main" type="text/javascript"></script>  
+        <link rel="stylesheet" type="text/css" href="/style/main.css">
+        <script src="http://requirejs.org/docs/release/2.1.11/minified/require.js" data-main="/scripts/main" type="text/javascript"></script>  
 
-    Welcome on Goliat Nodejs MVC HTTP Server demonstration!
-    <br>
-    For source code visit my account on GitHub: <a href="https://github.com/tmkryb/goliat"> Goliat! </a>
+        Welcome on Goliat Nodejs MVC HTTP Server demonstration!
+        <br>
+        For source code visit my account on GitHub: <a href="https://github.com/tmkryb/goliat"> Goliat! </a>
 
-    <ul>
-        <b>Things to do:</b>
-    <li>POST and GET</li>
-    <li>Passing POST values to controllers</li>
-    <li>Controller parameters</li>
-    <li>Rendering partials (Ajax in general)</li>
-    <li>Returning JSON objects</li>
-    <li>Rendering ViewData, and View parsing (server - client data sharing)</li>
+        <ul>
+            <b>Things to do:</b>
+            <li>POST and GET</li>
+            <li>Passing POST values to controllers</li>
+            <li>Controller parameters</li>
+            <li>Rendering partials (Ajax in general)</li>
+            <li>Returning JSON objects</li>
+            <li>Rendering ViewData, and View parsing (server - client data sharing)</li>
 
 
-    </ul>
+        </ul>
     </br>
     <div class="button" onclick='window.location = "/home/witaj"'><span>Go to action</span></div>
     <div class="button" onclick='window.location = "/user"'><span>Go to action #2</span></div>
     <div id="ajaxForm" style="display:none">
-    Name: <input type="text" id="name" /><br> 
-    Nick: <input type="text" id="nick" /><br>
-    <input type="checkbox" id="isImpresed" /> I'm impressed about this!
-    <div class="button" id="postIt"><span>Post it!</span></div>
+        Name: <input type="text" id="name" /><br> 
+        Nick: <input type="text" id="nick" /><br>
+        <input type="checkbox" id="isImpresed" /> I'm impressed about this!
+        <div class="button" id="postIt"><span>Post it!</span></div>
 
     </div>
+    <div id="ajaxFormForm" style="display:none">
+    <form action="home/formSubmit">
+        Name: <input type="text" name="name" /><br> 
+        Nick: <input type="text" name="nick" /><br>
+        <input type="checkbox" name="isImpresed" /> I'm impressed about this!
+        <input type="submit" value="Submit Form"/>
+    <form>
+    </div>
     <div class="button" id="ajaxPostTest"><span>Ajax post test</span></div>
-    </body>
-    </html>
+    <div class="button" id="ajaxFormTest"><span>Ajax form test</span></div>
+</body>
+</html>

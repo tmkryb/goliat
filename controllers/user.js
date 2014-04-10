@@ -2,11 +2,8 @@ module.exports = (function () {
 	var util = require("util");
 	var controllerBase = require("../main/controllerBase");
 	var extend = require("extend");
-	function homeController(response, path, query){
-		this.response = response;
-		this.path = path;
-		this.query = query;
-		controllerBase.call(this);
+	function homeController(controllerParams){		
+		controllerBase.call(this, controllerParams);
 	}
 	util.inherits(homeController, controllerBase);
 	extend(homeController.prototype, {

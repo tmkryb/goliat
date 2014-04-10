@@ -29,8 +29,16 @@ function route(pathname, response, request, query){
 		try{
 
 			var controller = require("./controllers/" + controllerName);
-
-			var thisController = new controller(response, pathname, query);
+			var controllerParams = {
+				"response": response,
+				"pathname": pathname,
+				"query": query,
+				"request": request
+			}
+			console.log("przed kontrolerem");
+			var thisController = new controller(controllerParams);	
+			console.log(pathname);	
+			console.log(thisController[pathname]);
 			if (thisController[pathname]){
 				thisController[pathname](query);
 			}else{
@@ -42,8 +50,7 @@ function route(pathname, response, request, query){
 		}
 	}
 
-	console.log(request.method);
-	console.log(request.headers);
+	
 
 	if(request.method === "POST") {
 		var data = "";

@@ -18,6 +18,10 @@ require(["jquery-private"], function(jQuery){
 		jQuery("#ajaxForm").show();
 	})
 
+	jQuery("#ajaxFormTest").click(function(){
+		jQuery("#ajaxFormForm").show();
+	})
+
 
 	jQuery("#postIt").click(function(){
 		jQuery.ajax({
