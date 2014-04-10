@@ -1,0 +1,59 @@
+extends ../shared/master.jade
+
+block header
+  div.headerContent
+    span.h1 Goliat - Node MVC http server with Jade rendering!
+    br
+    span.h2 it's simple - do it simple
+    br
+    span.h3 with power
+block content
+  div.mainContent
+    |Goliat scheme:
+    br
+    br
+    |- User (Let me just type the address in that browser)
+    br
+    |- Server (Oh! There is a request! Let's Route this!)
+    br
+    |- Router (which controller should I use?) 
+    br
+    |- Router (I've found the Controller!)
+    br
+    |- Controller (Hey kid, would you like actions?) 
+    br
+    |- Router (Let's call this controller action!) 
+    br
+    |- Action (Let me prepare some model, and call one of BaseController functions to render this View)
+    br
+    |- BaseController (ok, so i have the data and shit, no it's time to just render the view)
+    br
+    |- User (Oh! What a wonderfull nodeJS webApp!)
+  div.code(style="display: none")
+    br
+    | Controller example:
+    br
+    code
+       |module.exports = (function () {
+       |var util = require("util");
+       |var controllerBase = require("../main/controllerBase");
+       |var extend = require("extend");
+       |function homeController(controllerParams){      
+       |    controllerBase.call(this, controllerParams);
+       |}
+       |util.inherits(homeController, controllerBase);
+       |extend(homeController.prototype, {
+       |   folder: "user",
+       |    index: function(){
+       |        this.renderView("index", {"name": "Tomasz"});
+       |    },
+       |    nowy: function(){
+       |        this.renderView("nowy");
+       |    }
+       |})
+ 
+       |return homeController;
+
+})();
+
+

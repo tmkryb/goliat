@@ -1,0 +1,14 @@
+extends ../shared/master.jade
+block content
+  h1 Jade - node template engine
+  #container.col
+  |Your name is: 
+  =name
+  br
+  |Your nick is:
+  =nick
+  br
+  if locals.isImpressed
+   |You are impressed! And jade is great thing!
+  else
+   |You are not impressed :(

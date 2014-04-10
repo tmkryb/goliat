@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/style/main.css')
+    script(data-main="/scripts/main", src="http://requirejs.org/docs/release/2.1.11/minified/require.js")
+  
+  body
+    div.header
+      block header
+  
+    div#main
+      block content
+  
+    div#footer
+      block footer
