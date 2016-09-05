@@ -2,12 +2,13 @@ var fs = require("fs");
 var util = require("util");
 var path = require("path");
 var queryString = require("querystring");
-function route(pathname, response, request, query){
+function route(pathname, response, request, query, userSession, configuration){
 	//obszar consolelogów i takich tam
 	//przekieruj te dane do kontrolera
 	var parseToController = function(){
 		var controllerName = pathname.replace("/","");
-
+	
+		
 		var route = pathname.match(/[^/]+/g);
 
 		if (route){
@@ -33,7 +34,9 @@ function route(pathname, response, request, query){
 				"response": response,
 				"pathname": pathname,
 				"query": query,
-				"request": request
+				"request": request,
+				"session": userSession,
+				"serverConfig": configuration
 			}
 			console.log("przed kontrolerem");
 			var thisController = new controller(controllerParams);	

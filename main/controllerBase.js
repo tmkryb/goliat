@@ -2,13 +2,15 @@ module.exports = (function () {
 	var util = require("util");
 	var extend = require("extend");
 	var fs = require("fs");
+	var ejs = require("ejs");
 	function controllerBase(controllerParams){
 		
 		this.response = controllerParams.response;
 		this.path = controllerParams.path;
 		this.query = controllerParams.query;
 		this.request = controllerParams.request;
-
+		this.session = controllerParams.session;
+		this.configuration = controllerParams.serverConfig;
 	}
 
 	extend(controllerBase.prototype,{		
@@ -31,6 +33,26 @@ module.exports = (function () {
 					response.end("There was an error\n");
 				}
 			});
+		},
+		renderEJS: function(file, model){
+			if (model){
+				util.log("There is a model passed");
+				
+			}
+
+			var response = this.response;
+			response.writeHead(200, {"Content-Type": "text/html", "Server": "Goliat 0.1"});
+			
+			fs.readFile("./views/"+ this.folder + "/" + file + '.ejs', function(error, html){
+				//console.log(JSON.stringify(this));
+				if(html){					
+					response.write(ejs.render(html.toString(), {layout: false, locals: model}));
+					response.end();				
+				}else
+				{			
+					response.end("There was an error\n");
+				}
+			});	
 		},
 		returnJson: function(toReturn){			
 			this.response.writeHead(200, {"Content-Type": "application/json", "Server": "Goliat 0.1"});			

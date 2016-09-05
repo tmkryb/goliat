@@ -16,20 +16,21 @@ module.exports = (function () {
 	extend(homeController.prototype, {
 		folder: "home",
 		index: function(queryMap){
-			console.log("tutaj");
+			console.log(this.session);
+			var that = this;
 			if (this.request.method === "POST"){
 				console.log("POST FORM");
 				console.log(queryMap);
 
 			}			
-			this.renderJadeView("index", {"name": "Tomasz"});
+			this.renderHtmlView("index", {"name": "Tomasz"});
 		},
 		loop: function(queryMap){
 			console.log("Jestem tutaj");
 			this.returnJson(queryMap);
 		},
 		witaj: function(){
-			this.renderHtmlView("witaj");
+			this.renderEJS("witaj", {name: this.session.Get("userName")});
 		},
 		jadeTest: function(queryMap){
 			queryMap.pageTitle = "Jade test page";

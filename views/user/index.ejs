@@ -1,0 +1,74 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+ <div class="loginForm" method="POST">
+    <form action="/user/login">
+        <input type="text" name="login" /> Login<br>
+        <input type="text" name="password" /> Password<br>
+       <input type="submit" value="Login" />
+    </form>
+</div>
+
+<div class="registerForm">
+    <form action="/user/register" method="POST">
+        <input type="text" name="login" /> Login <br>
+        <span id="emailAlert" style="display: none; color: red">Proszę wprowadzić adres email</span> <br>
+        <input type="text" onkeyup="checkEmail()" id="txtEmail" name="email" /> Email <br>
+        <input type="text" name="name" /> Name <br>
+        <input type="text" name="surname" /> Surname <br>
+        <input type="password" name="password" /> Password <br>
+        <input type="password" name="secondPassword" /> Password again <br>
+        <input id="registerSubmit" style="display: none" type="submit" value="Register" />
+    </form>
+</div>
+</body>
+</html>
+
+
+
+<script>
+
+function checkEmail() {
+
+    var email = document.getElementById('txtEmail');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+    if (!filter.test(email.value)) {
+    document.getElementById("emailAlert").style.display = "block"
+    document.getElementById("registerSubmit").style.display = "none"
+    email.focus;
+    return false;
+ }else{
+     document.getElementById("emailAlert").style.display = "none"
+     document.getElementById("registerSubmit").style.display = "block"
+ }
+}
+    function checkForm(){
+        
+        
+        
+        if (isNaN(new Date(Date.parse(this.value))))
+        {
+            return false;
+        }else
+            return true;
+    }
+    
+    
+</script>
